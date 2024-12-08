@@ -425,6 +425,7 @@ void Grammar::RemoveRemain(){
 					isFromTerminal = true;
 					if (!map.count(rule.right_[0])) {
 						NeTerminal newNeTerminal = NeTerminal(lastFreeSpecialSymbol_);
+						neTerminals_.push_back(newNeTerminal);
 						UpdateLatestFreeNeTerminal();
 						rules__[newNeTerminal] = std::vector<Rule>();
 						rules__[newNeTerminal].push_back (Rule(newNeTerminal, {rule.right_[0]}));
@@ -438,6 +439,7 @@ void Grammar::RemoveRemain(){
 					isFromTerminal = true;
 					if (!map.count(rule.right_[1])) {
 						NeTerminal newNeTerminal = NeTerminal(lastFreeSpecialSymbol_);
+						neTerminals_.push_back(newNeTerminal);
 						UpdateLatestFreeNeTerminal();
 						rules__[newNeTerminal] = std::vector<Rule>();
 						rules__[newNeTerminal].push_back (Rule(newNeTerminal, {rule.right_[1]}));
@@ -465,6 +467,7 @@ void Grammar::RemoveRemain(){
 void Grammar::ConvertToEarley() {
     NeTerminal new_start = NeTerminal(lastFreeSpecialSymbol_);
     UpdateLatestFreeNeTerminal();
+	neTerminals_.push_back(new_start);
     rules__[new_start] = std::vector<Rule>();
     rules__[new_start].push_back(Rule(new_start, {start_}));
     start_ = new_start;
