@@ -34,7 +34,12 @@ void runAlgo () {
     bool res;
     for (size_t i = 0; i < N; ++i) {
         res = earley.predict(stringsToPredict[i]);
-        std::cout << "res for " << stringsToPredict[i] << " = " << res << "\n";
+        /// std::cout << "res for " << stringsToPredict[i] << " = " << res << "\n";
+        if (res) {
+            std::cout << "YES\n";
+        } else {
+            std::cout << "NO\n";
+        }
     }
 }
 
